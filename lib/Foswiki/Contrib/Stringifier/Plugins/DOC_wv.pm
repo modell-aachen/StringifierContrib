@@ -45,9 +45,7 @@ sub stringForFile {
     close($in);
 
     unlink($tmp_file);
-
-    $text = $self->decode($text, $Foswiki::cfg{StringifierContrib}{CharSet}{wv} || 'utf-8');
-    return $self->encode($text);
+    return $text;
 }
 
 1;

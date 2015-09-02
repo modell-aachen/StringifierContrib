@@ -32,9 +32,6 @@ sub stringForFile {
     
     return '' unless ($exit == 0);
 
-    $text = $self->decode($text, $Foswiki::cfg{StringifierContrib}{CharSet}{pptx2txt} || 'utf-8');
-    $text = $self->encode($text);
-
     return $text;
 }
 

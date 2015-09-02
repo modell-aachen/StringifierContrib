@@ -20,6 +20,7 @@ use strict;
 use Foswiki::Contrib::Stringifier::Base;
 our @ISA = qw( Foswiki::Contrib::Stringifier::Base );
 use Carp;
+use Encode::Guess;
 use File::MMagic;
 use File::Spec::Functions qw(rel2abs);
 
@@ -34,7 +35,12 @@ sub stringFor {
 
   #print STDERR "file $filename is a $mime ... using $self\n";
 
-  return $self->stringForFile($filename);
+  my $out = $self->stringForFile($filename);
+  Encode::Guess->set_suspects($Foswiki::cfg{StringifierContrib}{CharSetFallback} || 'iso-8859-1');
+  my $decoder = Encode::Guess->guess($out);
+  return $decoder->decode($out) if ref($decoder);
+  # Just muddle through somehow
+  return $out;
 }
 
 1;

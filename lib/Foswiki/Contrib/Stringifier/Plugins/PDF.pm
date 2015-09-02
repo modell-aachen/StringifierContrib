@@ -27,13 +27,11 @@ if (__PACKAGE__->_programExists($pdftotext)){
 sub stringForFile {
   my ($self, $filename) = @_;
 
-  my $cmd = $pdftotext . ' %FILENAME|F% - -q -nopgbrk -enc Latin1'; # SMELL: not using UTF-8 here as pdftotext does not speak utf-8 fluently
+  my $cmd = $pdftotext . ' %FILENAME|F% - -q -nopgbrk'; # SMELL: not using UTF-8 here as pdftotext does not speak utf-8 fluently
   my ($text, $exit) = Foswiki::Sandbox->sysCommand($cmd, FILENAME => $filename);
 
   return '' unless ($exit == 0);
 
-  $text = $self->decode($text, $Foswiki::cfg{StringifierContrib}{CharSet}{pdftotext} || 'iso-8859-1');
-  $text = $self->encode($text);
   $text =~ s///g; # remove any page break leftover
 
   return $text;

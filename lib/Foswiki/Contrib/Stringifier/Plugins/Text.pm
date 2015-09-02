@@ -32,18 +32,8 @@ sub stringForFile {
     my $text = <$in>;
     close($in);
 
-    my $decoder = Encode::Guess::guess_encoding($text, "utf-8, iso8859-1");
-
-    if (ref($decoder)) {
-      #print STDERR "here1: decodere=".$decoder->name."\n";
-      $text = $decoder->decode($text);
-    } else {
-      #print STDERR "decoder=$decoder\n";
-      $text = $self->decode($text, $Foswiki::cfg{StringifierContrib}{CharSet}{text} || 'utf-8');
-    }
-
     $text =~ s/^\?//; # remove bom
     
-    return $self->encode($text);
+    return $text;
 }
 1;
