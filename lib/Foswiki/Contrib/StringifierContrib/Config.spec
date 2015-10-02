@@ -51,7 +51,7 @@ $Foswiki::cfg{StringifierContrib}{pptx2txtCmd} = '../tools/pptx2txt.pl';
 $Foswiki::cfg{StringifierContrib}{docx2txtCmd} = '../tools/docx2txt.pl';
 
 # **COMMAND**
-# Path to your xlsx2txt.pl command (used to convert MS excel recent documents: .xlsx)
+# Path to your xls2txt.pl command (used to convert older MS Excel documents .xls)
 $Foswiki::cfg{StringifierContrib}{xls2txtCmd} = '../tools/xls2txt.pl';
 
 # **STRING EXPERT**

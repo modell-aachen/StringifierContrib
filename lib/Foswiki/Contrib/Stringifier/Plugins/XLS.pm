@@ -16,7 +16,7 @@ package Foswiki::Contrib::Stringifier::Plugins::XLS;
 use Foswiki::Contrib::Stringifier::Base ();
 our @ISA = qw( Foswiki::Contrib::Stringifier::Base );
 
-my $xls2txt = $Foswiki::cfg{StringifierContrib}{xls2txtCmd} || 'xls2txt.pl';
+my $xls2txt = $Foswiki::cfg{StringifierContrib}{xls2txtCmd} || '../tools/xls2txt.pl';
 
 # Only if xls2txt.pl exists, I register myself.
 if (__PACKAGE__->_programExists($xls2txt)){
