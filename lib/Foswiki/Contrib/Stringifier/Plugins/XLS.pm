@@ -16,7 +16,7 @@ package Foswiki::Contrib::Stringifier::Plugins::XLS;
 use Foswiki::Contrib::Stringifier::Base ();
 our @ISA = qw( Foswiki::Contrib::Stringifier::Base );
 
-my $xls2txt = $Foswiki::cfg{StringifierContrib}{xls2txtCmd} || 'xls2txt.pl';
+my $xls2txt = $Foswiki::cfg{StringifierContrib}{xls2txtCmd} || '../tools/xls2txt.pl';
 
 # Only if xls2txt.pl exists, I register myself.
 if (__PACKAGE__->_programExists($xls2txt)){
@@ -25,10 +25,10 @@ if (__PACKAGE__->_programExists($xls2txt)){
 
 sub stringForFile {
     my ($self, $filename) = @_;
-    
+
     my $cmd = $xls2txt . ' %FILENAME|F% -';
     my ($text, $exit) = Foswiki::Sandbox->sysCommand($cmd, FILENAME => $filename);
-    
+
     return '' unless ($exit == 0);
     return $text;
 }

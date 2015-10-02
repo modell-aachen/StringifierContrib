@@ -19,3 +19,4 @@ tools/docx2txt.pl 0755
 tools/pptx2txt.pl 0755
 tools/stringify 0755
 tools/xls2txt.pl 0755
+tools/xlsx2txt.pl 0755

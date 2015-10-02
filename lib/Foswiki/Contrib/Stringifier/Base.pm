@@ -27,7 +27,7 @@ use constant DEFAULT_HANDLER => "Foswiki::Contrib::Stringifier::Plugins::Text";
     sub register_handler {
         my ($package, @specs) = @_;
 
-        for my $spec (@specs) { 
+        for my $spec (@specs) {
             if ($spec =~ m{/}) {
                 $mime_handlers{$spec} = $package;
             } else {
@@ -38,7 +38,7 @@ use constant DEFAULT_HANDLER => "Foswiki::Contrib::Stringifier::Plugins::Text";
     sub handler_for {
         my ($self, $filename, $mime) = @_;
         if (exists $mime_handlers{$mime}) { return $mime_handlers{$mime} }
-	$filename = lc($filename);
+            $filename = lc($filename);
         for my $spec (keys %extension_handlers) {
             if ($filename =~ /$spec$/) { return $extension_handlers{$spec} }
         }
@@ -49,13 +49,12 @@ use constant DEFAULT_HANDLER => "Foswiki::Contrib::Stringifier::Plugins::Text";
     # This is as service method that a sub calss can use to decise, 
     # if it wants to register or not.
     sub _programExists {
-	my ($self, $program) = @_;
-
-	return defined(`$program 2>&1`);
+        my ($self, $program) = @_;
+        return defined(`$program 2>&1`);
     }
 }
 
-sub new { 
+sub new {
     my ($handler) = @_;
     my $self = bless {}, $handler;
 

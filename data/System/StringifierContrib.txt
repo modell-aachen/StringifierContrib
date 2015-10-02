@@ -59,7 +59,7 @@ To index =.ppt= files you need to install =ppthtml=.
 To index these file types, you will need to install the following tools from Sourceforge:
    * [[http://sourceforge.net/projects/docx2txt/][docx2txt]] for =.docx=
    * [[http://sourceforge.net/projects/pptx2txt/][pptx2txt]] for =.pptx=
-   * CPAN:Spreadsheet::XLSX for =.xlsx=
+   * CPAN:Spreadsheet::ParseXLSX or (prefered) a locally installed xlsx2cvs for =.xlsx=
 
 Then set the command path to these tools in =configure=.
 
@@ -135,10 +135,11 @@ See Foswiki:Tasks/StringifierContrib for currently open tasks.
 -->
 
 |  Author(s): | Foswiki:Main.MarkusHesse, Foswiki:Main.SvenDowideit, Foswiki:Main.MichaelDaum & Foswiki:Main.AndrewJones |
-|  Copyright: | &copy; 2007, Foswiki:Main.MarkusHesse; &copy; 2009-2012, Foswiki Contributors |
+|  Copyright: | &copy; 2007, Foswiki:Main.MarkusHesse; &copy; 2009-2015, Foswiki Contributors; &copy; 2014-2015 Modell Aachen GmbH |
 |  Release: | %$RELEASE% |
 |  Version: | %$VERSION% |
 |  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  12 Oct 2015: | Improved xlsx stringifying. |
 |  07 May 2012: | (2.20) added configuration parameter to specify the encoding of the output of each external helper in use |
 |  17 Oct 2011: | (2.10) using wvText instead of wvHtml now; encoding stringified files to the site's charset now; fixed unit tests to use utf8 exclusively |
 |  05 Sep 2011: | (2.00) added <nop>OpenDocument serializer; removed dependency left-over on Text::Iconv; added dependency on odt2txt; fixed defaults for wv serializer  |
