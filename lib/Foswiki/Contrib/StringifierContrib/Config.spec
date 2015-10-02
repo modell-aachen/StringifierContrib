@@ -54,6 +54,10 @@ $Foswiki::cfg{StringifierContrib}{docx2txtCmd} = '../tools/docx2txt.pl';
 # Path to your xls2txt.pl command (used to convert older MS Excel documents .xls)
 $Foswiki::cfg{StringifierContrib}{xls2txtCmd} = '../tools/xls2txt.pl';
 
+# **COMMAND**
+# Path to your xlsx2txt.pl command (used to convert newer MS Excel documents .xls)
+$Foswiki::cfg{StringifierContrib}{xlsx2txtCmd} = '../tools/xlsx2txt.pl';
+
 # **STRING EXPERT**
 # Set this to the charset encoding produced by the abiword helper program. 
 # This is most probably either 'utf-8' or 'iso-8859-1'.

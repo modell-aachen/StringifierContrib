@@ -15,7 +15,7 @@
 # http://www.gnu.org/copyleft/gpl.html
 
 package Foswiki::Contrib::StringifierContrib;
-our $VERSION = '2';
-our $RELEASE = "2";
+our $VERSION = '3.0';
+our $RELEASE = "3.0";
 
 1;

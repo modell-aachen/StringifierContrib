@@ -1,5 +1,6 @@
 # Copyright (C) 2009 TWIKI.NET (http://www.twiki.net)
-# Copyright (C) 2009-2011 Foswiki Contributors
+# Copyright (C) 2009-2015 Foswiki Contributors
+# Copyright (C) 2014-2015 Modell Aachen GmbH
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -17,44 +18,24 @@ package Foswiki::Contrib::Stringifier::Plugins::XLSX;
 use Foswiki::Contrib::Stringifier::Base ();
 our @ISA = qw( Foswiki::Contrib::Stringifier::Base );
 
+my $xlsx2txt = $Foswiki::cfg{StringifierContrib}{xlsx22txtCmd} || '../tools/xlsx2txt.pl';
+
 __PACKAGE__->register_handler("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", ".xlsx");
 
 use Error qw(:try);
 
 sub stringForFile {
-    my ( $self, $file ) = @_;
+    my ($self, $filename) = @_;
+    my $cmd = $xlsx2txt . ' %FILENAME|F% - ';
+    my ($text, $error) = Foswiki::Sandbox->sysCommand($cmd, FILENAME => $filename);
 
-    my $book;
-
-    try {
-	require Spreadsheet::XLSX;
-        $book = Spreadsheet::XLSX->new($file);
-    } catch Error with {
-	return '';
-    };
-
-    return '' unless $book;
-
-    my $text = '';
-
-    foreach my $sheet ( @{ $book->{Worksheet} } ) {
-        $text .= sprintf( "%s\n", $sheet->{Name} );
-        $sheet->{MaxRow} ||= $sheet->{MinRow};
-
-        foreach my $row ( $sheet->{MinRow} .. $sheet->{MaxRow} ) {
-            $sheet->{MaxCol} ||= $sheet->{MinCol};
-
-            foreach my $col ( $sheet->{MinCol} .. $sheet->{MaxCol} ) {
-                my $cell = $sheet->{Cells}[$row][$col];
-                if ($cell) {
-                    $text .= sprintf( "%s\n", $cell->{Val} );
-                }
-            }
-        }
+    unless ($error) {
+        return $self->encode($text);
+        return '';
+    } else {
+        # Use option for xls decoding here
+        return  $self->encode($self->decode($text, $Foswiki::cfg{StringifierContrib}{CharSet}{xls2txt} || 'utf-8'));
     }
-
-    $text = $self->decode($text, $Foswiki::cfg{StringifierContrib}{CharSet}{xlsx} || 'utf-8');
-    return $self->encode($text);
 }
 
 1;
