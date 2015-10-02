@@ -25,10 +25,10 @@ if (__PACKAGE__->_programExists($xls2txt)){
 
 sub stringForFile {
     my ($self, $filename) = @_;
-    
+
     my $cmd = $xls2txt . ' %FILENAME|F% -';
     my ($text, $exit) = Foswiki::Sandbox->sysCommand($cmd, FILENAME => $filename);
-    
+
     return '' unless ($exit == 0);
 
     $text = $self->decode($text, $Foswiki::cfg{StringifierContrib}{CharSet}{xls2txt} || 'utf-8');
