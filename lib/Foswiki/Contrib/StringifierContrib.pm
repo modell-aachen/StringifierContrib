@@ -31,7 +31,7 @@ sub maintenanceHandler {
             unless (scalar (grep { (-f $_ && -x $_)} (map {File::Spec->catfile($_, 'xlsx2csv')} File::Spec->path()))) {
                 $result->{result} = 1;
                 $result->{priority} = 1;
-                $result->{solution} = "Install xlsx, if possible.";
+                $result->{solution} = "Install xlsx2cvs, if possible.";
             }
             return $result;
         }
