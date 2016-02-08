@@ -29,13 +29,8 @@ sub stringForFile {
     my $cmd = $xlsx2txt . ' %FILENAME|F% - ';
     my ($text, $error) = Foswiki::Sandbox->sysCommand($cmd, FILENAME => $filename);
 
-    unless ($error) {
-        return $self->encode($text);
-        return '';
-    } else {
-        # Use option for xls decoding here
-        return  $self->encode($self->decode($text, $Foswiki::cfg{StringifierContrib}{CharSet}{xls2txt} || 'utf-8'));
-    }
+    return '' if $error;
+    return $text;
 }
 
 1;
