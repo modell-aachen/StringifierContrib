@@ -33,7 +33,8 @@ for my $check (map {File::Spec->catfile($_, 'xlsx2csv')} File::Spec->path()) {
 
 if ($binary) {
     # Use efficient python implementation.
-    system("$binary -i --delimiter=tab $file");
+    my @sargs = ($binary, "-i", "--delimiter=tab", $file);
+    system(@sargs);
 } else {
     # Fall back to much slower and more inefficient ParseXLSX.
     my $parser = Spreadsheet::ParseXLSX->new;
