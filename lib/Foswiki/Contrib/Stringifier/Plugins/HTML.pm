@@ -23,11 +23,11 @@ __PACKAGE__->register_handler("text/html", ".html");
 
 sub stringForFile {
     my ($self, $filename) = @_;
-    
+
     # check it is a text file
     return '' unless ( -e $filename );
 
-    my $cmd = $html2text . ' -nobs %FILENAME|F%';
+    my $cmd = ($html2text =~ m#%FILENAME\|F%# ? $html2text : ($html2text . ' -nobs %FILENAME|F%'));
     my ($text, $exit) = Foswiki::Sandbox->sysCommand($cmd, FILENAME => $filename);
 
     $text =~ s/<\?xml.*?\?>\s*//g;
