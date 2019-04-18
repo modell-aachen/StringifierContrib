@@ -44,19 +44,19 @@ $Foswiki::cfg{StringifierContrib}{pdftotextCmd} = 'pdftotext';
 
 # **COMMAND**
 # Path to your pptx2txt.pl command (used to convert MS powerpoint recent documents: .pptx)
-$Foswiki::cfg{StringifierContrib}{pptx2txtCmd} = '../tools/pptx2txt.pl';
+$Foswiki::cfg{StringifierContrib}{pptx2txtCmd} = '$Foswiki::cfg{ToolsDir}/pptx2txt.pl';
 
 # **COMMAND**
 # Path to your docx2txt.pl command (used to convert MS word recent documents: .docx)
-$Foswiki::cfg{StringifierContrib}{docx2txtCmd} = '../tools/docx2txt.pl';
+$Foswiki::cfg{StringifierContrib}{docx2txtCmd} = '$Foswiki::cfg{ToolsDir}/docx2txt.pl';
 
 # **COMMAND**
 # Path to your xls2txt.pl command (used to convert older MS Excel documents .xls)
-$Foswiki::cfg{StringifierContrib}{xls2txtCmd} = '../tools/xls2txt.pl';
+$Foswiki::cfg{StringifierContrib}{xls2txtCmd} = '$Foswiki::cfg{ToolsDir}/xls2txt.pl';
 
 # **COMMAND**
 # Path to your xlsx2txt.pl command (used to convert newer MS Excel documents .xls)
-$Foswiki::cfg{StringifierContrib}{xlsx2txtCmd} = '../tools/xlsx2txt.pl';
+$Foswiki::cfg{StringifierContrib}{xlsx2txtCmd} = '$Foswiki::cfg{ToolsDir}/xlsx2txt.pl';
 
 # **STRING EXPERT**
 # Set this to the charset encoding we should try for stringifier output
