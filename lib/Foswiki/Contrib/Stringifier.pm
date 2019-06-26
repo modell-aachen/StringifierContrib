@@ -40,8 +40,11 @@ sub stringFor {
   my $out = $self->stringForFile($filename);
   Encode::Guess->set_suspects($Foswiki::cfg{StringifierContrib}{CharSetFallback} || 'iso-8859-1');
   my $decoder = Encode::Guess->guess($out);
-  return $decoder->decode($out) if ref($decoder);
-  # Just muddle through somehow
+  $out = $decoder->decode($out) if ref($decoder);
+
+  # aggresively remove any leftover wide characters
+  $out =~ s#[^[:ascii:]]##g;
+
   return $out;
 }
 
